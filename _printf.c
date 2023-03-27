@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	char *s;
-	int c, n = 0;
+	int c, i, j, n = 0;
 	int num, temp, digit, digit_count, track;
 
 	va_start(list, format);

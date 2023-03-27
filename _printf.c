@@ -10,80 +10,41 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	char *s;
-	int c, i, j, n = 0;
-	int num, temp, digit, digit_count, track;
+	int i = 0, j = 0, n = 0;
+	print_func_t print_func[] = {
+
+		{'c', print_char},
+		{'s', print_string},
+		{'%', print_percent},
+		{0, NULL}
+	};
 
 	va_start(list, format);
-	while (*format)
+
+	while (format && format[i])
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
-			format++;
-			if (*format == 'c')
+			j = 0;
+			while (print_func[j].type)
 			{
-				c = va_arg(list, int);
-				putchar(c);
-				n++;
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				num = va_arg(list, int);
-				if (num == 0)
+				if (format[i + 1] == print_func[j].type)
 				{
-					putchar('0');
-					n++;
+					n += print_func[j].func(list);
+					i++;
+					break;
 				}
-				else
-				{
-					if (num < 0)
-					{
-						putchar('-');
-						n++;
-					}
-					temp = num;
-					while (temp != 0)
-					{
-						digit_count++;
-						temp /= 10;
-					}
-					temp = num;
-					for(i = digit_count - 1; i >= 0; i--)
-					{
-						track = 1;
-						for(j = 0; j < i; j++)
-						{
-							track *= 10;
-						}
-						digit = temp / track;
-						temp -= temp * digit;
-						putchar(digit + '0');
-						n++;
-					}
-				}
-			}
-			else if (*format == 's')
-			{
-				s = va_arg(list, char *);
-				while (*s)
-				{
-					putchar(*s++);
-					n++;
-				}
-			}
-			else if (*format == '%')
-			{
-				putchar('%');
-				n++;
+				j++;
 			}
 		}
 		else
 		{
-			putchar(*format);
+			putchar(format[i]);
 			n++;
 		}
-		format++;
+		i++;
 	}
 	va_end(list);
+
 	return (n);
 }

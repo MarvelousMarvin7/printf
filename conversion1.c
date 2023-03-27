@@ -12,7 +12,7 @@ int print_char(va_list list)
 	char c;
 
 	c = va_arg(list, int);
-	return (putchar(c));
+	return (_putchar(c));
 }
 /**
  * print_string - prints a string
@@ -32,7 +32,7 @@ int print_string(va_list list)
 
 	while (s[i])
 	{
-		putchar(s[i]);
+		_putchar(s[i]);
 		i++;
 	}
 
@@ -47,5 +47,5 @@ int print_string(va_list list)
 int print_percent(va_list list)
 {
 	(void)list;
-	return (putchar('%'));
+	return (_putchar('%'));
 }

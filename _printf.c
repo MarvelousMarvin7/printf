@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * _printf - produce output according to format
@@ -23,6 +22,8 @@ int _printf(const char *format, ...)
 				n += print_char(list);
 			else if (format[i] == 's')
 				n += print_string(list);
+			else if (format[i] == 'd' || format[i] == 'i')
+				n += print_int(list);
 			else if (format[i] == '%')
 				n += print_percent(list);
 		}

@@ -12,6 +12,7 @@ int _printf(const char *format, ...)
 	va_list list;
 	char *s;
 	int c, n = 0;
+	int num, temp, digit, digit_count, track;
 
 	va_start(list, format);
 	while (*format)
@@ -24,6 +25,42 @@ int _printf(const char *format, ...)
 				c = va_arg(list, int);
 				putchar(c);
 				n++;
+			}
+			else if (*format == 'd' || *format == 'i')
+			{
+				num = va_arg(list, int);
+				if (num == 0)
+				{
+					putchar('0');
+					n++;
+				}
+				else
+				{
+					if (num < 0)
+					{
+						putchar('-');
+						n++;
+					}
+					temp = num;
+					while (temp != 0)
+					{
+						digit_count++;
+						temp /= 10;
+					}
+					temp = num;
+					for(i = digit_count - 1; i >= 0; i--)
+					{
+						track = 1;
+						for(j = 0; j < i; j++)
+						{
+							track *= 10;
+						}
+						digit = temp / track;
+						temp -= temp * digit;
+						putchar(digit + '0');
+						n++;
+					}
+				}
 			}
 			else if (*format == 's')
 			{

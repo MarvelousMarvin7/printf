@@ -10,32 +10,21 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int i = 0, j = 0, n = 0;
-	print_func_t print_func[] = {
-
-		{'c', print_char},
-		{'s', print_string},
-		{'%', print_percent},
-		{0, NULL}
-	};
+	int i = 0, n = 0;
 
 	va_start(list, format);
 
-	while (format && format[i])
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			j = 0;
-			while (print_func[j].type)
-			{
-				if (format[i + 1] == print_func[j].type)
-				{
-					n += print_func[j].func(list);
-					i++;
-					break;
-				}
-				j++;
-			}
+			i++;
+			if (format[i] == 'c')
+				n += print_char(list);
+			else if (format[i] == 's')
+				n += print_string(list);
+			else if (format[i] == '%')
+				n += print_percent(list);
 		}
 		else
 		{
@@ -44,6 +33,7 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
+
 	va_end(list);
 
 	return (n);

@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * print_int - Print an integer to stdout
@@ -8,7 +9,7 @@
  */
 int print_int(va_list list)
 {
-	int i, num, temp, power, digit, digits = 0, n = 0;
+	/*int i, num, temp, power, digit, digits = 0, n = 0;
 
 	num = va_arg(list, int);
 
@@ -39,4 +40,29 @@ int print_int(va_list list)
 	}
 
 	return (n);
+	*/
+        char *str;
+        int len = 0, i;
+	int n;
+
+	n = va_arg(list, int);
+
+        if (n < 0) {
+                _putchar('-');
+                n = -n;
+        }
+
+        str = malloc(sizeof(char) * 10);
+
+        do {
+                str[len++] = (n % 10) + '0';
+                n /= 10;
+        } while (n);
+
+        for (i = len - 1; i >= 0; i--)
+                _putchar(str[i]);
+
+        free(str);
+
+        return len;
 }

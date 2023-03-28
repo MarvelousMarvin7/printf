@@ -9,29 +9,35 @@
  */
 int print_int(va_list list)
 {
-	char *str;
-	int len = 0, i;
-	int n;
+	int num, digits = 0, n = 0, power, digit, temp;
 
-	n = va_arg(list, int);
+	num = va_arg(args, int);
 
-	if (n < 0)
+	if (num < 0)
 	{
 		_putchar('-');
-		n = -n;
+		n++;
+		num = -num;
 	}
 
-	str = malloc(sizeof(char) * 10);
-
+	temp = num;
 	do {
-		str[len++] = (n % 10) + '0';
-		n /= 10;
-	} while (n);
+		digits++;
+		temp /= 10;
+	} while (temp);
 
-	for (i = len - 1; i >= 0; i--)
-		_putchar(str[i]);
+	while (digits > 0)
+	{
+		power = 1;
+		for (i = 1; i < digits; i++)
+		{
+			power *= 10;
+		}
+		digit = (num / power) % 10;
+		_putchar('0' + digit);
+		n++;
+		digits--;
+	}
 
-	free(str);
-
-	return (len);
+	return (n);
 }

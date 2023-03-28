@@ -13,25 +13,29 @@ int _printf(const char *format, ...)
 		{"c", print_char},
 		{"s", print_string},
 		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
-		{"b", print_binary},
-		{"r", print_reversed},
-		{"R", rot13},
-		{"u", unsigned_integer},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_heX},
+		{"d", print_int},
+		{"i", print_int},
+		/**
+		 *{"b", print_binary},
+		 *{"r", print_reversed},
+		 *{"R", rot13},
+		 *{"u", unsigned_integer},
+		 *{"o", print_octal},
+		 *{"x", print_hex},
+		 *{"X", print_heX},
+		 */
 		{NULL, NULL}
 	};
-	va_list arg_list;
+	va_list list;
 
 	if (format == NULL)
 		return (-1);
 
-	va_start(arg_list, format);
+	va_start(list, format);
 	/*Calling parser function*/
-	printed_chars = parser(format, f_list, arg_list);
-	va_end(arg_list);
+	printed_chars = parser(format, f_list, list);
+
+	va_end(list);
+
 	return (printed_chars);
 }

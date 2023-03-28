@@ -1,41 +1,37 @@
 #include "main.h"
 
 /**
- * _printf - produce output according to format
- * @format: format to be used
- *
- * Return: number of characters printed
+ * _printf - Receives the main string and all the necessary parameters to
+ * print a formated string
+ * @format: A string containing all the desired characters
+ * Return: A total count of the characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list list;
-	int i = 0, n = 0;
+	int printed_chars;
+	conver_t f_list[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{"d", print_integer},
+		{"i", print_integer},
+		{"b", print_binary},
+		{"r", print_reversed},
+		{"R", rot13},
+		{"u", unsigned_integer},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_heX},
+		{NULL, NULL}
+	};
+	va_list arg_list;
 
-	va_start(list, format);
+	if (format == NULL)
+		return (-1);
 
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				n += print_char(list);
-			else if (format[i] == 's')
-				n += print_string(list);
-			else if (format[i] == 'd' || format[i] == 'i')
-				n += print_int(list);
-			else if (format[i] == '%')
-				n += print_percent(list);
-		}
-		else
-		{
-			_putchar(format[i]);
-			n++;
-		}
-		i++;
-	}
-
-	va_end(list);
-
-	return (n);
+	va_start(arg_list, format);
+	/*Calling parser function*/
+	printed_chars = parser(format, f_list, arg_list);
+	va_end(arg_list);
+	return (printed_chars);
 }

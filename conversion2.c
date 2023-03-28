@@ -9,9 +9,9 @@
  */
 int print_int(va_list list)
 {
-	int num, digits = 0, n = 0, power, digit, temp;
+	int num, digits = 0, n = 0, power, i, digit, temp;
 
-	num = va_arg(args, int);
+	num = va_arg(list, int);
 
 	if (num < 0)
 	{

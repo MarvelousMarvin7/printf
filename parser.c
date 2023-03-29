@@ -44,7 +44,7 @@ int parser(const char *format, conver_t f_list[], va_list list)
 		}
 		else
 		{
-			_putchar(format[i]); /*call the write function*/
+			_putchar(format[i]); /*call the _putchar function*/
 			printed_chars++;
 		}
 	}

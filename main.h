@@ -5,9 +5,9 @@
 #include <stddef.h>
 
 /**
- * conversion - struct for format
- * @specifier: format to print
- * @function: pointer to function to print
+ * struct conversion - struct for format
+ * @sym: format to print
+ * @f: pointer to function to print
  */
 typedef struct conversion
 {

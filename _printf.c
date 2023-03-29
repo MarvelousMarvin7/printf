@@ -16,9 +16,9 @@ int _printf(const char *format, ...)
 		{"d", print_int},
 		{"i", print_int},
 		/*"b", print_binary},*/
-		{"r", print_reversed},
-		{"R", rot13},
-		{"u", unsigned_integer},
+		/*{"r", print_reversed},*/
+		/*{"R", rot13},*/
+		/*{"u", unsigned_integer},*/
 		/*{"o", print_octal},*/
 		/*{"x", print_hex},*/
 		/*{"X", print_heX},*/

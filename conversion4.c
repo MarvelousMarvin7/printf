@@ -10,7 +10,7 @@ int print_unsigned(va_list list)
 {
 	unsigned int n;
 	unsigned int tmp;
-	int len = 0, total_len = 0;
+	int len = 0;
 
 	n = va_arg(list, unsigned int);
 	tmp = n;
@@ -23,11 +23,11 @@ int print_unsigned(va_list list)
 	while (len--)
 	{
 		_putchar((n / _pow(10, len)) % 10 + '0');
-		total_len++;
 	}
+
 	_putchar(10);
 
-	return (total_len);
+	return (len + 1);
 }
 
 /**

@@ -1,7 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 #include <stddef.h>
 
 /**
@@ -23,5 +25,10 @@ int print_string(va_list list);
 int print_percent(va_list list);
 int print_int(va_list list);
 int print_binary(va_list list);
+int print_unsigned(va_list list);
+int print_octal(va_list list);
+int print_hex(va_list list);
+int print_heX(va_list list);
+int _pow(int base, int exp);
 
 #endif /* MAIN_H */

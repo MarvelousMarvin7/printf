@@ -27,7 +27,7 @@ int print_unsigned(va_list list)
 
 	_putchar(10);
 
-	return (len + 1);
+	return (len);
 }
 
 /**
